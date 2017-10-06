@@ -187,7 +187,7 @@ endfunction
 command! -bang -complete=buffer -nargs=? Bclose call s:Bclose('<bang>', '<args>')
 
 syntax enable
-colorscheme monokai
+silent! colorscheme monokai
 set number
 set backspace=2
 set cursorline

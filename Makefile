@@ -11,16 +11,19 @@ setup:
 	mkdir ~/.vim/swap
 	mkdir ~/.vim/undo
 	mkdir ~/.vim/backup
-	@echo "${YELLOW}>> Make sure fzf is installed for fzf.vim${NC}"
+	@echo "${YELLOW}>> Installing plugins${NC}";
+	vim +PlugInstall +qall
+	@echo "${YELLOW}>> Make sure fzf is installed for fzf.vim${NC}";
 	@echo "${YELLOW}>> Make sure to select a powerline font for vim-airline (only if you intend on using the terminal a lot)${NC}";
-	@echo "${YELLOW}>> MacVim or vimR (neovim) is recommended (for font separation from your terminal)${NC}"
-	@echo "${YELLOW}>> If using vimR, make sure to install python support for YouCompleteMe${NC}"
-	git submodule foreach git pull origin master
+	@echo "${YELLOW}>> MacVim or vimR (neovim) is recommended (for font separation from your terminal)${NC}";
+	@echo "${YELLOW}>> If using vimR, make sure to install python support for YouCompleteMe${NC}";
+	@echo "${YELLOW}>> If using vimR, make sure to symlink this directory to ~/.config/nvim${NC}";
 clean:
-	@echo "${YELLOW}>> Removing swap directory${NC}"
+	@echo "${YELLOW}>> Removing swap directory${NC}";
 	rm -rf ~/.vim/swap
-	@echo "${YELLOW}>> Removing undo directory${NC}"
+	@echo "${YELLOW}>> Removing undo directory${NC}";
 	rm -rf ~/.vim/undo
-	@echo "${YELLOW}>> Removing backup directory${NC}"
+	@echo "${YELLOW}>> Removing backup directory${NC}";
 	rm -rf ~/.vim/backup
-
+	@echo "${YELLOW}>> Removing plugins${NC}";
+	rm -rf ~/.vim/plugged
