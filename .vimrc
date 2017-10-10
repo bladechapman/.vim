@@ -20,7 +20,7 @@ let g:fzf_action = {
 nnoremap <leader>o :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>F :Ag<cr>
-nnoremap <leader>f :Lines<cr>
+nnoremap <leader>f :BLines<cr>
 " Ag - exclude the path and lines from the search
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)#narrow-ag-results-within-vim
 function! s:ag_to_qf(line)
@@ -106,6 +106,8 @@ Plug 'sheerun/vim-polyglot'
 
 " extreme tab completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+let g:ycm_max_num_candidates = 15
+let g:ycm_max_num_identifier_candidates = 15
 
 " colors
 Plug 'sickill/vim-monokai'
