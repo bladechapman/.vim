@@ -10,7 +10,34 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" fzf/ag search
+Plug 'tpope/vim-sensible'
+
+Plug 'tpope/vim-commentary'
+
+Plug 'tpope/vim-repeat'
+
+Plug 'tpope/vim-surround'
+
+Plug 'Raimondi/delimitmate'
+let delimitMate_expand_cr = 1
+set backspace=2
+
+Plug 'easymotion/vim-easymotion'
+map / <plug>(easymotion-sn)
+omap / <plug>(easymotion-tn)
+
+Plug 'w0rp/ale'
+nmap <silent> <C-j> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ale_next_wrap)
+let g:ale_fixers = { 'javascript': ['eslint'], }
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_sign_error = '🔺'
+let g:ale_sign_warning = '🔸'
+nnoremap <silent><F5> :ALEFix<cr>
+
 " make sure to install fzf via HomeBrew
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 let g:fzf_action = {
@@ -54,67 +81,21 @@ command! -nargs=* Ag call fzf#run({
 \ 'down':    '50%'
 \ })
 
-" asynchronous lint engine
-Plug 'w0rp/ale'
-nmap <silent> <C-j> <Plug>(ale_previous_wrap)
-nmap <silent> <C-k> <Plug>(ale_next_wrap)
-let g:ale_fixers = { 'javascript': ['eslint'], }
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_sign_error = '🔺'
-let g:ale_sign_warning = '🔸'
-let g:ale_sign_column_always = 1
-nnoremap <silent><F5> :ALEFix<cr>
-
-" easymotion for better navigation
-Plug 'easymotion/vim-easymotion'
-map  / <plug>(easymotion-sn)
-omap / <plug>(easymotion-tn)
-
-" vim-airline status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='minimalist'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_highlighting_cache = 1
+let g:airline_extensions=[]
+let g:airline_highlighting_cache=1
 
-" vim-commentary for easier commenting
-Plug 'tpope/vim-commentary'
+Plug 'heavenshell/vim-jsdoc'
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_enable_es6=1
 
-" vim-repeat for allowing '.' repeats on supported plugins
-Plug 'tpope/vim-repeat'
-
-" vim-surround for better surrounding character support
-Plug 'tpope/vim-surround'
-
-" plugin for automatic surrounding character closing
-Plug 'Raimondi/delimitmate'
-let delimitMate_expand_cr = 1
-set backspace=2
-
-" vim indent guide
-Plug 'Yggdroot/indentLine'
-let g:indentLine_char = '⎸'
-let g:indentLine_showFirstIndentLevel=1
-
-" vim-polyglot for all the syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
-" extreme tab completion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-let g:ycm_max_num_candidates = 15
-let g:ycm_max_num_identifier_candidates = 15
-
-" colors
-Plug 'sickill/vim-monokai'
+Plug 'vim-scripts/zenburn'
 
 " Initialize plugin system
 call plug#end()
-
 
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
@@ -125,14 +106,12 @@ let loaded_bclose = 1
 if !exists('bclose_multiple')
   let bclose_multiple = 1
 endif
-
 " Display an error message.
 function! s:Warn(msg)
   echohl ErrorMsg
   echomsg a:msg
   echohl NONE
 endfunction
-
 " Command ':Bclose' executes ':bd' to delete buffer in current window.
 " The window will show the alternate buffer (Ctrl-^) if it exists,
 " or the previous buffer (:bp), or a blank buffer if no previous.
@@ -188,31 +167,46 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call s:Bclose('<bang>', '<args>')
 
-syntax enable
-silent! colorscheme monokai
-set number
-set backspace=2
-set cursorline
-set hlsearch
-set incsearch
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-set foldmethod=indent
-set foldignore=
-set autoread
-set backupdir=~/.vim/backup
-set directory=~/.vim/swap
-set undodir=~/.vim/undo
-
-let g:python2_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+"the following will map <Tab> to either actually insert a <Tab> if
+"the current line is currently only whitespace, or start/continue a CTRL-N
+"completion operation:
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+function! CleverTab()
+  if pumvisible()
+    return "\<C-N>"
+  endif
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  elseif exists('&omnifunc') && &omnifunc != ''
+    return "\<C-X>\<C-O>"
+  else
+    return "\<C-N>"
+  endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 
 autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
 autocmd FileType * exe "normal zR"
+
+colorscheme zenburn
+set number
+set hlsearch
+set foldmethod=indent
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
 
 nnoremap <leader>c :ccl<cr>
 nnoremap <leader>q :q<cr>
