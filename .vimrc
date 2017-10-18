@@ -94,6 +94,10 @@ let g:jsdoc_enable_es6=1
 
 Plug 'vim-scripts/zenburn'
 
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+
+Plug 'brooth/far.vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -166,26 +170,6 @@ function! s:Bclose(bang, buffer)
   execute wcurrent.'wincmd w'
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call s:Bclose('<bang>', '<args>')
-
-"the following will map <Tab> to either actually insert a <Tab> if
-"the current line is currently only whitespace, or start/continue a CTRL-N
-"completion operation:
-function! CleverTab()
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-    return "\<Tab>"
-  else
-    return "\<C-N>"
-  endif
-endfunction
-function! CleverShiftTab()
-    if pumvisible()
-        return "\<C-P>"
-    else
-        return ""
-    endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 
 autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
