@@ -32,7 +32,6 @@ nmap <silent> <C-k> <Plug>(ale_next_wrap)
 let g:ale_fixers = { 'javascript': ['eslint'], }
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
-let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_sign_error = '🔺'
 let g:ale_sign_warning = '🔸'
@@ -72,7 +71,7 @@ function! s:ag_handler(lines)
   endif
 endfunction
 command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --color "%s"',
+\ 'source':  printf('ag -f --nogroup --column --color "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
 \ 'sink*':    function('<sid>ag_handler'),
 \ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
@@ -88,15 +87,24 @@ let g:airline_powerline_fonts=1
 let g:airline_extensions=[]
 let g:airline_highlighting_cache=1
 
-Plug 'heavenshell/vim-jsdoc'
-let g:jsdoc_allow_input_prompt=1
-let g:jsdoc_enable_es6=1
-
 Plug 'vim-scripts/zenburn'
 
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-
-Plug 'brooth/far.vim'
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+" let g:deoplete#enable_at_startup = 1
+" if !exists('g:deoplete#omni#input_patterns')
+"   let g:deoplete#omni#input_patterns = {}
+" endif
+" " deoplete tab-complete
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" " tern
+" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " Initialize plugin system
 call plug#end()
@@ -175,6 +183,22 @@ autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
 autocmd FileType * exe "normal zR"
+
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
 
 colorscheme zenburn
 set number
