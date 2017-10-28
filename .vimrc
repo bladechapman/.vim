@@ -71,7 +71,7 @@ function! s:ag_handler(lines)
   endif
 endfunction
 command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag -f --nogroup --column --color "%s"',
+\ 'source':  printf('ag --nogroup --column --color "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
 \ 'sink*':    function('<sid>ag_handler'),
 \ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
@@ -88,23 +88,6 @@ let g:airline_extensions=[]
 let g:airline_highlighting_cache=1
 
 Plug 'vim-scripts/zenburn'
-
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-" let g:deoplete#enable_at_startup = 1
-" if !exists('g:deoplete#omni#input_patterns')
-"   let g:deoplete#omni#input_patterns = {}
-" endif
-" " deoplete tab-complete
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" " tern
-" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " Initialize plugin system
 call plug#end()
@@ -179,26 +162,30 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call s:Bclose('<bang>', '<args>')
 
+"the following will map <Tab> to either actually insert a <Tab> if		
+"the current line is currently only whitespace, or start/continue a CTRL-N		
+"completion operation:		
+function! CleverTab()		
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  else
+    return "\<C-N>"
+  endif
+endfunction
+function! CleverShiftTab()
+    if pumvisible()
+        return "\<C-P>"
+    else
+        return ""
+    endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
+
 autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
 autocmd FileType * exe "normal zR"
-
-" omnifuncs
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
-" tern
-if exists('g:plugs["tern_for_vim"]')
-  let g:tern_show_argument_hints = 'on_hold'
-  let g:tern_show_signature_in_pum = 1
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-endif
 
 colorscheme zenburn
 set number
