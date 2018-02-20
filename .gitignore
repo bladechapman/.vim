@@ -3,4 +3,5 @@ undo/
 backup/
 
 plugged/
+autoload/plug.vim
 .netrwhist

@@ -1,0 +1,38 @@
+
+" Load plugins
+call utils#Resource('src/plugins/__index__.vim')
+
+" Load scripts
+call utils#Resource('src/scripts/__index__.vim')
+
+" Global configurations
+set number
+set hlsearch
+set foldmethod=indent
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+let &backupdir = g:VIMDIR . '/backup'
+let &directory=g:VIMDIR . '/swap'
+let &undodir=g:VIMDIR . '/undo'
+
+" TODO: Get rid of these
+autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
+autocmd FileType * exe "normal zR"
+
+" Global mappings
+nnoremap <leader>c :ccl<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>w :Bclose<cr>
+nnoremap <leader>W :bufdo Bclose<cr>
+
+nnoremap <leader>h :wincmd h<cr>
+nnoremap <leader>j :wincmd j<cr>
+nnoremap <leader>k :wincmd k<cr>
+nnoremap <leader>l :wincmd l<cr>
+
+nnoremap <leader>s :w<cr>
+
+map <SPACE> <leader>

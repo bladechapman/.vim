@@ -5,19 +5,13 @@ NC=\033[0m # No Color
 
 setup:	
 	@echo "${YELLOW}>> Linking vim dotfiles${NC}";
-	ln -sf ~/.vim/.vimrc ~/.vimrc;
-	ln -sf ~/.vim/.gvimrc ~/.gvimrc;
+	ln -sf ~/.vim/src/vimrc ~/.vimrc;
 	@echo "${YELLOW}>> Creating backup directories${NC}";
 	mkdir ~/.vim/swap
 	mkdir ~/.vim/undo
 	mkdir ~/.vim/backup
 	@echo "${YELLOW}>> Installing plugins${NC}";
 	vim +PlugInstall +qall
-	@echo "${YELLOW}>> Make sure fzf is installed for fzf.vim${NC}";
-	@echo "${YELLOW}>> Make sure to select a powerline font for vim-airline (only if you intend on using the terminal a lot)${NC}";
-	@echo "${YELLOW}>> MacVim or vimR (neovim) is recommended (for font separation from your terminal)${NC}";
-	@echo "${YELLOW}>> If using vimR, make sure to install python support for YouCompleteMe${NC}";
-	@echo "${YELLOW}>> If using vimR, make sure to symlink this directory to ~/.config/nvim${NC}";
 clean:
 	@echo "${YELLOW}>> Removing swap directory${NC}";
 	rm -rf ~/.vim/swap
@@ -27,3 +21,5 @@ clean:
 	rm -rf ~/.vim/backup
 	@echo "${YELLOW}>> Removing plugins${NC}";
 	rm -rf ~/.vim/plugged
+	@echo "${YELLOW}>> Removing plugged${NC}";
+	rm -rf ~/.vim/autoload/plug.vim
