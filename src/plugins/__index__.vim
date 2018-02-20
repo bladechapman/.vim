@@ -22,5 +22,7 @@ call utils#Resource('src/plugins/fzf.vim')
 
 call utils#Resource('src/plugins/vim-airline.vim')
 
+call utils#Resource('src/plugins/easymotion.vim')
+
 " Initialize plugin system
 call plug#end()
