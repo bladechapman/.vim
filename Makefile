@@ -6,6 +6,8 @@ NC=\033[0m # No Color
 setup:	
 	@echo "${YELLOW}>> Linking vim dotfiles${NC}";
 	ln -sf ~/.vim/src/vimrc ~/.vimrc;
+	@echo "${YELLOW}>> Linking init.vim${NC}";
+	ln -sf ~/.vim/src/vimrc ~/.vim/init.vim;
 	@echo "${YELLOW}>> Creating backup directories${NC}";
 	mkdir ~/.vim/swap
 	mkdir ~/.vim/undo
@@ -23,3 +25,5 @@ clean:
 	rm -rf ~/.vim/plugged
 	@echo "${YELLOW}>> Removing plugged${NC}";
 	rm -rf ~/.vim/autoload/plug.vim
+	@echo "${YELLOW}>> Removing init.vim${NC}";
+	rm ~/.vim/init.vim

@@ -5,3 +5,5 @@ backup/
 plugged/
 autoload/plug.vim
 .netrwhist
+
+init.vim
