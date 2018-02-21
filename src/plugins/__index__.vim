@@ -14,6 +14,8 @@ Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
 
+call utils#Resource('src/plugins/jellybeans.vim')
+
 call utils#Resource('src/plugins/delimitmate.vim')
 
 call utils#Resource('src/plugins/ale.vim')
