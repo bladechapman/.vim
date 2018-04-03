@@ -1,6 +1,5 @@
 {
-    "workbench.colorTheme": "Visual Studio Light",
-    "window.zoomLevel": -2,
+    "workbench.colorTheme": "Atom One Light",
     "vim.leader": "<space>",
     "vim.easymotion": true,
 
@@ -84,15 +83,6 @@
             ]
         },
         {
-            "before": ["leader", "f"],
-            "after": [],
-            "commands": [
-                {
-                    "command": "settings.action.search"
-                }
-            ]
-        },
-        {
             "before": ["C-j"],
             "after": [],
             "commands": [
@@ -121,5 +111,8 @@
     "vim.hlsearch": true,
     "workbench.sideBar.location": "left",
     "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": true
+    "workbench.statusBar.visible": true,
+    "editor.useTabStops": false,
+    "window.zoomLevel": -1,
+    "editor.fontSize": 11
 }
