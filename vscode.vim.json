@@ -1,0 +1,125 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "window.zoomLevel": -2,
+    "vim.leader": "<space>",
+    "vim.easymotion": true,
+
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "/"],
+            "after": ["leader", "leader", "/"]
+        },
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "w"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "q"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.joinTwoGroups"
+                }
+            ]
+        },
+        {
+            "before": ["leader", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ]
+        },
+        {
+            "before": ["leader", "b"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ]
+        },
+        {
+            "before": ["C-w", "v"],
+            "after": [],
+            "commands": [
+                { 
+                    "command": "workbench.action.splitEditor"
+                }
+            ]
+        },
+        {
+            "before": ["leader", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.focusNextGroup"
+                }
+            ]
+        },
+        {
+            "before": ["leader", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.focusPreviousGroup"
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "settings.action.search"
+                }
+            ]
+        },
+        {
+            "before": ["C-j"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.marker.next"
+                }
+            ]
+        },
+        {
+            "before": ["C-k"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.marker.prev"
+                }
+            ]
+        }
+    ],
+    "vim.easymotionMarkerFontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "vim.easymotionMarkerBackgroundColor": "rgba(0,0,0,255)",
+    "vim.easymotionMarkerForegroundColorOneChar": "rgb(255,0,0)",
+    "vim.easymotionMarkerForegroundColorTwoChar": "rgb(255, 165, 0)",
+
+    "workbench.editor.showTabs": false,
+    "explorer.openEditors.visible": 0,
+    "vim.hlsearch": true,
+    "workbench.sideBar.location": "left",
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": true
+}

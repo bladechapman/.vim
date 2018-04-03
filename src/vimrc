@@ -15,8 +15,8 @@ set shiftwidth=4
 let &backupdir = g:VIMDIR . '/backup'
 let &directory=g:VIMDIR . '/swap'
 let &undodir=g:VIMDIR . '/undo'
-set cursorline
-" silent! execute 'colorscheme ' . g:COLOR
+" set cursorline
+silent! execute 'colorscheme ' . g:COLOR
 
 " TODO: Get rid of these
 autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
