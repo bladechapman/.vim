@@ -6,7 +6,7 @@ call utils#Resource('src/plugins/__index__.vim')
 call utils#Resource('src/scripts/__index__.vim')
 
 " Global configurations
-set number
+set relativenumber
 set hlsearch
 set foldmethod=indent
 set softtabstop=4
