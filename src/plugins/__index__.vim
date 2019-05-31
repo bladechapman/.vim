@@ -6,6 +6,10 @@ endif
 
 call plug#begin(VIMDIR . '/plugged')
 
+Plug 'purescript-contrib/purescript-vim'
+
+Plug 'FrigoEU/psc-ide-vim'
+
 Plug 'tpope/vim-sensible'
 
 Plug 'tpope/vim-commentary'
@@ -30,3 +34,6 @@ call utils#Resource('src/plugins/easymotion.vim')
 
 " Initialize plugin system
 call plug#end()
+
+call utils#Resource('src/plugins/psc-ide-vim.vim')
+
