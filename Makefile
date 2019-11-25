@@ -14,6 +14,10 @@ setup:
 	mkdir ~/.vim/backup
 	@echo "${YELLOW}>> Installing plugins${NC}";
 	vim +PlugInstall +qall
+	@echo "${YELLOW}>> Configuring fzf to use ripgrep (assumes zsh)${NC}";
+	touch ~/.zshrc
+	echo "\n# Configure fzf to use ripgrep by default" >> ~/.zshrc
+	echo "export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'" >> ~/.zshrc
 clean:
 	@echo "${YELLOW}>> Removing swap directory${NC}";
 	rm -rf ~/.vim/swap
