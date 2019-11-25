@@ -31,3 +31,4 @@ clean:
 	rm -rf ~/.vim/autoload/plug.vim
 	@echo "${YELLOW}>> Removing init.vim${NC}";
 	rm ~/.vim/init.vim
+	@echo "${YELLOW}>> WARNING: fzf configuration in ~/.zshrc needs to be removed manually${NC}";
