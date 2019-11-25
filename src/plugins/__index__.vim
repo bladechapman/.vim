@@ -20,6 +20,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'leafgarland/typescript-vim'
+
 call utils#Resource('src/plugins/colors.vim')
 
 call utils#Resource('src/plugins/delimitmate.vim')
