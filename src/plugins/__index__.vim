@@ -18,15 +18,17 @@ Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
 
-Plug 'rust-lang/rust.vim'
+call utils#Resource('src/plugins/ale.vim')
 
-Plug 'leafgarland/typescript-vim'
+call utils#Resource('src/plugins/rust.vim')
+
+call utils#Resource('src/plugins/typescript.vim')
+
+call utils#Resource('src/plugins/deoplete.vim')
 
 call utils#Resource('src/plugins/colors.vim')
 
 call utils#Resource('src/plugins/delimitmate.vim')
-
-call utils#Resource('src/plugins/ale.vim')
 
 call utils#Resource('src/plugins/fzf.vim')
 

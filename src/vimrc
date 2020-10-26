@@ -12,6 +12,8 @@ set foldmethod=indent
 set softtabstop=4
 set expandtab
 set shiftwidth=4
+let g:netrw_liststyle=3
+let g:netrw_browse_split=4
 let &backupdir = g:VIMDIR . '/backup'
 let &directory=g:VIMDIR . '/swap'
 let &undodir=g:VIMDIR . '/undo'
@@ -38,3 +40,5 @@ nnoremap <leader>l :wincmd l<cr>
 nnoremap <leader>s :w<cr>
 
 map <SPACE> <leader>
+
+colorscheme nord
