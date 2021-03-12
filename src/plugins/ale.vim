@@ -1,9 +1,14 @@
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 
 Plug 'w0rp/ale'
 nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 let g:ale_fixers = {
     \'javascript': ['eslint'],
+    \'jsx': ['eslint'],
     \'python': 'autopep8'
 \}
 let g:ale_linters = {}

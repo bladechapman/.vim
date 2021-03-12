@@ -20,10 +20,10 @@ let &undodir=g:VIMDIR . '/undo'
 " set cursorline
 silent! execute 'colorscheme ' . g:COLOR
 
-" TODO: Get rid of these
-autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
-autocmd FileType html setlocal shiftwidth=2 softtabstop=2
-autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
+" " TODO: Get rid of these
+" autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
+" autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+" autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
 autocmd FileType * exe "normal zR"
 
 " Global mappings

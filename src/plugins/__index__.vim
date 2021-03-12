@@ -6,9 +6,9 @@ endif
 
 call plug#begin(VIMDIR . '/plugged')
 
-Plug 'purescript-contrib/purescript-vim'
+Plug 'neovim/nvim-lspconfig'
 
-Plug 'FrigoEU/psc-ide-vim'
+Plug 'hrsh7th/nvim-compe'
 
 Plug 'tpope/vim-sensible'
 
@@ -18,13 +18,11 @@ Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
 
-call utils#Resource('src/plugins/ale.vim')
+" call utils#Resource('src/plugins/ale.vim')
 
-call utils#Resource('src/plugins/rust.vim')
+" call utils#Resource('src/plugins/rust.vim')
 
 call utils#Resource('src/plugins/typescript.vim')
-
-call utils#Resource('src/plugins/deoplete.vim')
 
 call utils#Resource('src/plugins/colors.vim')
 
@@ -39,5 +37,5 @@ call utils#Resource('src/plugins/easymotion.vim')
 " Initialize plugin system
 call plug#end()
 
-call utils#Resource('src/plugins/psc-ide-vim.vim')
-
+call utils#Resource('src/plugins/nvim-lsp_postconfig.lua')
+call utils#Resource('src/plugins/compe_postconfig.vim')
