@@ -1,3 +1,4 @@
+set nocompatible
 
 " Load plugins
 call utils#Resource('src/plugins/__index__.vim')
@@ -41,4 +42,4 @@ nnoremap <leader>s :w<cr>
 
 map <SPACE> <leader>
 
-colorscheme nord
+colorscheme molokai
