@@ -1,0 +1,16 @@
+" Global mappings
+nnoremap <leader>c :ccl<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>w :Bclose<cr>
+nnoremap <leader>W :bufdo Bclose<cr>
+
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
+nnoremap <leader>s :w<cr>
+
+map <SPACE> <leader>
+
+set relativenumber

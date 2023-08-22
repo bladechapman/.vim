@@ -6,6 +6,7 @@ call utils#Resource('src/plugins/__index__.vim')
 " Load scripts
 call utils#Resource('src/scripts/__index__.vim')
 
+
 " Global configurations
 set relativenumber
 set hlsearch
@@ -23,8 +24,12 @@ silent! execute 'colorscheme ' . g:COLOR
 
 " " TODO: Get rid of these
 " autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4
+" autocmd FileType typescriptreact setlocal shiftwidth=4 softtabstop=4
 " autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 " autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2
+" augroup filetype
+"   au! BufRead,BufNewFile *.swift set ft=swift
+" augroup END
 autocmd FileType * exe "normal zR"
 
 " Global mappings
@@ -43,3 +48,4 @@ nnoremap <leader>s :w<cr>
 map <SPACE> <leader>
 
 colorscheme molokai
+

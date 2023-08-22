@@ -48,7 +48,35 @@ end
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
 -- local servers = { "pyright", "rust_analyzer", "tsserver" }
-local servers = { "tsserver" }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
-end
+-- local servers = {
+--     "tsserver",
+--     "eslint",
+--     "sourcekit"
+-- }
+
+
+-- local servers = {
+--     "tsserver",
+--     "eslint"
+-- }
+-- for _, lsp in ipairs(servers) do
+--   nvim_lsp[lsp].setup { on_attach = on_attach }
+-- end
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+nvim_lsp.tsserver.setup {
+    on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" },
+    capabilities = capabilities
+}
+
+nvim_lsp.eslint.setup {
+    on_attach = on_attach,
+}
+
+nvim_lsp.pyright.setup {
+    on_attach = on_attach,
+    filetypes = { "python" }
+}

@@ -8,7 +8,14 @@ call plug#begin(VIMDIR . '/plugged')
 
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 Plug 'tpope/vim-sensible'
 
@@ -18,11 +25,9 @@ Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
 
-" call utils#Resource('src/plugins/ale.vim')
+Plug 'nvim-treesitter/nvim-treesitter'
 
-" call utils#Resource('src/plugins/rust.vim')
-
-call utils#Resource('src/plugins/typescript.vim')
+" " Plug 'vim-scripts/dbext.vim'
 
 call utils#Resource('src/plugins/colors.vim')
 
@@ -37,5 +42,6 @@ call utils#Resource('src/plugins/easymotion.vim')
 " Initialize plugin system
 call plug#end()
 
-call utils#Resource('src/plugins/nvim-lsp_postconfig.lua')
 call utils#Resource('src/plugins/compe_postconfig.vim')
+call utils#Resource('src/plugins/nvim-treesitter-postconfig.lua')
+call utils#Resource('src/plugins/nvim-lsp_postconfig.lua')
